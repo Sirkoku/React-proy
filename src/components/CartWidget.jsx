@@ -1,7 +1,7 @@
 import {useState} from "react";
 
 function CartWidget(){
-    const [cantidad,setcantidad] = useState(3);
+    const [cantidad,setcantidad] = useState(1);
 
     return(
         <div style={{display:"flex",alignItems:"center",gap:"8px"}}>
