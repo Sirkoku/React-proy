@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
-import CartWidget from './components/CartWidget';
+import Notfound from './pages/Notfound';
 import Cart from "./pages/Cart";
-import './App.css';
 import productos from "./data/products"
 import { Routes,Route} from 'react-router-dom';
+import './App.css';
+import ItemDetailContainer from './components/containers/ItemDetailContainer';
+
 
 function App() {
   const [carrito, setcarrito] = useState([]);
@@ -29,7 +31,7 @@ function App() {
   return (
     <>
     <header>
-      <NavBar/>
+      <NavBar cantidad={carrito.length} />
     </header>
 
     <main>
@@ -41,8 +43,14 @@ function App() {
     onAdd={agregarAlCarrito}
     />}
     />
+    <Route
+    path="/categoria/:categoriaId"
+    element={<ItemListContainer onAdd={agregarAlCarrito}/>}
+    />
+    <Route path="/producto/:productoId" element={<ItemDetailContainer}></Route>
 
     <Route path="/cart" element={<Cart carrito={carrito}/>} />
+    <Route path="*" element={<Notfound/>}></Route>
     </Routes>
     </main>
 
